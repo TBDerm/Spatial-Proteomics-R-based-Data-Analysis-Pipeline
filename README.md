@@ -3,8 +3,8 @@
 Analysis pipeline for DIA MS protein and peptide intensity datasets, which segregates/annotates protein categories of interest, carries out statistical analyses, and visualises results. 
 
 
-<img src="https://github.com/user-attachments/assets/f73d7e31-4b80-426e-b872-4ed753d36b58" width="500"/>
-<img src="https://github.com/user-attachments/assets/9ea0d4be-2f3b-45ba-b823-d9ee1898ce8e" width="500"/>
+<img src="https://github.com/user-attachments/assets/f73d7e31-4b80-426e-b872-4ed753d36b58" width="600"/>
+<img src="https://github.com/user-attachments/assets/9ea0d4be-2f3b-45ba-b823-d9ee1898ce8e" width="600"/>
 <img src="https://github.com/user-attachments/assets/44a9fea0-5ebe-447d-a5c4-aa8568680b3c" width="500"/>
 
 
