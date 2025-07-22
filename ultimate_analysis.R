@@ -690,10 +690,10 @@ limma_results_list <- lapply(comparison_names, function(comp_name) {
   res$NegLog10_P <- -log10(res$P.Value)
   res$NegLog10_AdjP <- -log10(res$adj.P.Val)
   # reverse FC values (so that it reflects the change with the treated condition)
-  res$logFC <- -res$logFC
-  # Rename key columns with the pairwise comparison name
-  colnames(res)[colnames(res) %in% c("logFC", "P.Value", "adj.P.Val", "NegLog10_P", "NegLog10_AdjP")] <-
-    paste0(comp_name, " ", c("log2FC", "p-value", "adj p-value", "-log10 p-value", "-log10 adj p-value"))
+  #res$logFC <- -res$logFC
+  # Rename columns to reduce confusion when doing lots of pairs of DE analysis
+  colnames(res)[colnames(res) %in% c("logFC", "AveExpr", "t", "P.Value", "adj.P.Val", "B", "NegLog10_P", "NegLog10_AdjP")] <-
+    paste0(comp_name, " ", c("log2FC", "AveExpr", "t", "p-value", "adj p-value", "B", "-log10 p-value", "-log10 adj p-value"))
   return(res)
 })
 
@@ -704,8 +704,8 @@ limma_results_list <- lapply(limma_results_list, function(df) {
 # Assign names to the list corresponding to the comparison names
 names(limma_results_list) <- comparison_names
 
-# Merge all results into one large dataframe using full join
-limma_final_results <- Reduce(function(x, y) full_join(x, y, by = "UniProt_AC"), limma_results_list) %>%
+# Merge all results into one large dataframe using full join, and get gene names too
+limma_final_results <- Reduce(function(x, y) full_join(x, y, by = c("UniProt_AC", "Gene")), limma_results_list) %>%
   select(UniProt_AC, Gene, everything())
 
 # adding mean intensity value per protein, per experimental group:
